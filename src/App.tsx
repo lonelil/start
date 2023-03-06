@@ -3,6 +3,7 @@ import axios from "axios";
 import Clock from "./components/ui/Clock";
 
 export default function App() {
+  const [wallpaperLoading, setWallpaperLoading] = useState(true);
   const [wallpaper, setWallpaper] = useState({
     image: "",
     credit: "",
@@ -28,6 +29,7 @@ export default function App() {
         credit: `${data.user.name}`,
         url: data.links.html,
       });
+      setWallpaperLoading(false);
     }
     getWallpaper();
   }, []);
@@ -53,11 +55,13 @@ export default function App() {
         </div>
       </div>
 
-      <img
-        loading="lazy"
-        src={wallpaper.image}
-        className="h-screen w-screen object-cover"
-      ></img>
+      {!wallpaperLoading && (
+        <img
+          loading="lazy"
+          src={wallpaper.image}
+          className="h-screen w-screen object-cover"
+        ></img>
+      )}
     </>
   );
 }
