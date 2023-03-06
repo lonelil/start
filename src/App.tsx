@@ -38,7 +38,7 @@ export default function App() {
     <>
       <div className="absolute  z-[1] w-screen h-screen text-white overflow-y-hidden">
         <div className="fixed bottom-0 pb-4 w-screen flex justify-center text-center">
-          <div className="bg-zinc-900 p-6 bg-opacity-90 rounded-xl">
+          <div className="backdrop-blur-lg drop-shadow-lg p-6 rounded-xl">
             <h1 className="text-6xl font-semibold">
               <Clock />
             </h1>
