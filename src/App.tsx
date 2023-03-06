@@ -34,24 +34,23 @@ export default function App() {
 
   return (
     <>
-      <div className="absolute backdrop-blur-sm z-[1] w-screen h-screen text-white">
-        <div className="mt-12 text-center">
-          <h1 className="text-6xl font-semibold">
-            <Clock />
-          </h1>
-          <p>
-            {new Intl.DateTimeFormat("en-US", { weekday: "short" }).format(
-              new Date()
-            )}{" "}
-            {new Date().getDate()}{" "}
-            {new Intl.DateTimeFormat("en-US", { month: "short" }).format(
-              new Date()
-            )}
-          </p>
+      <div className="absolute  z-[1] w-screen h-screen text-white overflow-y-hidden">
+        <div className="fixed bottom-0 pb-4 w-screen flex justify-center text-center">
+          <div className="bg-zinc-900 p-6 bg-opacity-90 rounded-xl">
+            <h1 className="text-6xl font-semibold">
+              <Clock />
+            </h1>
+            <p className="ml-[3px]">
+              {new Intl.DateTimeFormat("en-US", { weekday: "short" }).format(
+                new Date()
+              )}{" "}
+              {new Date().getDate()}{" "}
+              {new Intl.DateTimeFormat("en-US", { month: "short" }).format(
+                new Date()
+              )}
+            </p>
+          </div>
         </div>
-        <a className="fixed bottom-0 ml-4 mb-4" href={wallpaper.url}>
-          {wallpaper.credit}
-        </a>
       </div>
 
       <img
