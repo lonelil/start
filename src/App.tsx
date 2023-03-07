@@ -38,6 +38,13 @@ export default function App() {
     <>
       <div className="absolute  z-[1] w-screen h-screen text-white overflow-y-hidden">
         <div className="fixed bottom-0 pb-4 w-screen flex justify-center text-center">
+          <div
+            className={`backdrop-blur-lg drop-shadow-lg absolute bottom-40 p-2 rounded-xl`}
+          >
+            <button className="hover:backdrop-blur-2xl p-2 rounded-lg">
+              test
+            </button>
+          </div>
           <div className="backdrop-blur-lg drop-shadow-lg p-6 rounded-xl">
             <h1 className="text-6xl font-semibold">
               <Clock />
