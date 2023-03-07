@@ -36,16 +36,16 @@ export default function App() {
 
   return (
     <>
-      <div className="absolute  z-[1] w-screen h-screen text-white overflow-y-hidden">
-        <div className="fixed bottom-0 pb-4 w-screen flex justify-center text-center">
+      <div className="absolute  z-[1] h-screen w-screen overflow-y-hidden text-white">
+        <div className="fixed bottom-0 flex w-screen justify-center pb-4 text-center">
           <div
-            className={`backdrop-blur-lg drop-shadow-lg absolute bottom-40 p-2 rounded-xl`}
+            className={`absolute bottom-40 flex flex-col rounded-xl p-2 drop-shadow-lg backdrop-blur-lg`}
           >
-            <button className="hover:backdrop-blur-2xl p-2 rounded-lg">
+            <button className="rounded-lg p-2 hover:backdrop-blur-2xl">
               test
             </button>
           </div>
-          <div className="backdrop-blur-lg drop-shadow-lg p-6 rounded-xl">
+          <div className="rounded-xl p-6 drop-shadow-lg backdrop-blur-lg">
             <h1 className="text-6xl font-semibold">
               <Clock />
             </h1>
