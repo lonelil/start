@@ -43,8 +43,7 @@ jobs:
           zip ${{ runner.temp }}/chrome_extension.crx ./dist
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-artifact@v3
         with:
-          name: ${{ runner.temp }}/chrome_extension.crx
-          path: 
-          if-no-files-found: error
+          name: chrome_extension
+          path: ${{ runner.temp }}/chrome_extension.crx
