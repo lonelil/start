@@ -1,0 +1,12 @@
+{
+  "name": "start.lonelil.dev",
+  "description": "Extension version of start.lonelil.dev.",
+  "version": "0.1",
+  "manifest_version": 3,
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}
