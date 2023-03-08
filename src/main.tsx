@@ -4,11 +4,16 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
 import "./index.css";
 import NotFound from "./pages/404";
+import SpotifyCallback from "./pages/SpotifyCallback";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
+  },
+  {
+    path: "/spotify-callback",
+    element: <SpotifyCallback />,
   },
   {
     path: "*",

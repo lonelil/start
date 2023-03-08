@@ -3,6 +3,7 @@ import { FiHome, FiImage, FiMusic } from "react-icons/fi";
 import SettingsButton from "../components/dynamicIsland/SettingsButtons";
 import HomePage from "../components/dynamicIsland/pages/Home";
 import WallpaperPage from "../components/dynamicIsland/pages/Wallpaper";
+import MusicPage from "../components/dynamicIsland/pages/Music";
 
 export default function Home() {
   const [wallpaperLoading, setWallpaperLoading] = useState(true);
@@ -63,6 +64,7 @@ export default function Home() {
           </div>
           <div className="max-h-[135px] min-w-[300px] rounded-xl p-6 drop-shadow-lg backdrop-blur-lg">
             {dynamicIslandPage === "home" ? <HomePage /> : null}
+            {dynamicIslandPage === "music" ? <MusicPage /> : null}
             {dynamicIslandPage === "wallpaper" ? (
               <WallpaperPage
                 wallpaper={wallpaper}
