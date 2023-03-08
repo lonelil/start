@@ -3,5 +3,32 @@
 @tailwind utilities;
 
 body {
-  font-family: "Inter", sans-serif;
+  font-family: "din_next_lt_pro", sans-serif;
+}
+
+@font-face {
+  font-family: "din_next_lt_pro";
+  src: url("/fonts/dinnextltpro-bold-webfont.woff2") format("woff2"),
+    url("/fonts/dinnextltpro-bold-webfont.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  display: swap;
+}
+
+@font-face {
+  font-family: "din_next_lt_pro";
+  src: url("/fonts/dinnextltpro-medium-webfont.woff2") format("woff2"),
+    url("/fonts/dinnextltpro-medium-webfont.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  display: swap;
+}
+
+@font-face {
+  font-family: "din_next_lt_pro";
+  src: url("/fonts/dinnextltpro-regular-webfont.woff2") format("woff2"),
+    url("/fonts/dinnextltpro-regular-webfont.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  display: swap;
 }
