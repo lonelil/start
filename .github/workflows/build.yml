@@ -45,5 +45,6 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          name: chrome_extension
-          path: ${{ runner.temp }}/chrome_extension.crx
+          name: ${{ runner.temp }}/chrome_extension.crx
+          path: 
+          if-no-files-found: error
