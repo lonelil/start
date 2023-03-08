@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import SpotifyWebApi from "spotify-web-api-js";
 import SettingsButton from "../SettingsButtons";
 import { FaSpotify } from "react-icons/fa";
@@ -16,6 +16,7 @@ export default function MusicPage() {
   const [currentTrack, setCurrentTrack] =
     useState<SpotifyApi.CurrentlyPlayingResponse>();
   const [playStatus, setPlatStatus] = useState("play");
+  const intervalRef = useRef<number>();
 
   useEffect(function () {
     if (window.localStorage.getItem("spotify_token")) {
@@ -33,13 +34,15 @@ export default function MusicPage() {
 
       setLoggedIn(true);
       setCurrentTrackLoaded(true);
-      var timer = setInterval(() => {
+
+      intervalRef.current = setInterval(() => {
         spotifyApi.getMyCurrentPlayingTrack().then((data) => {
           setCurrentTrack(data);
         });
       }, 5000);
-      return function cleanup() {
-        clearInterval(timer);
+
+      return () => {
+        clearInterval(intervalRef.current);
       };
     }
   }, []);
@@ -66,63 +69,68 @@ export default function MusicPage() {
         <>
           {currentTrackLoaded ? (
             <>
-              <div className="flex items-center space-x-3">
-                <img
-                  src={currentTrack?.item?.album.images[0].url}
-                  width={69}
-                  height={69}
-                  alt={currentTrack?.item?.album.name}
-                  className="rounded"
-                />
-                <div className="text-left">
-                  <p className="text-xl">{currentTrack?.item?.name}</p>
-                  <p className="text-sm">
-                    {currentTrack?.item?.artists.map(
-                      (artist, i: number, { length }) => {
-                        return (
-                          <span key={i}>
-                            {artist.name}
-                            {length - 1 !== i && (
-                              <span className="mr-1">,</span>
-                            )}
-                          </span>
-                        );
-                      }
-                    )}
-                  </p>
-                  <div className="flex  justify-evenly text-2xl">
-                    <button onClick={() => spotifyApi.skipToPrevious()}>
-                      <IoPlaySkipBack />
-                    </button>
-                    {playStatus == "play" ? (
-                      <button
-                        onClick={() => {
-                          spotifyApi.pause();
-                          setPlatStatus("pause");
-                        }}
-                      >
-                        <IoPauseCircle size={36} />
+              {currentTrack?.item ? (
+                <div className="flex items-center space-x-3">
+                  <img
+                    src={currentTrack?.item?.album.images[0].url}
+                    width={69}
+                    height={69}
+                    alt={currentTrack?.item?.album.name}
+                    className="rounded"
+                  />
+                  <div className="text-left">
+                    <p className="text-xl">{currentTrack?.item?.name}</p>
+                    <p className="text-sm">
+                      {currentTrack?.item?.artists.map(
+                        (artist, i: number, { length }) => {
+                          return (
+                            <span key={i}>
+                              {artist.name}
+                              {length - 1 !== i && (
+                                <span className="mr-1">,</span>
+                              )}
+                            </span>
+                          );
+                        }
+                      )}
+                    </p>
+                    <div className="flex  justify-evenly text-2xl">
+                      <button onClick={() => spotifyApi.skipToPrevious()}>
+                        <IoPlaySkipBack />
                       </button>
-                    ) : (
-                      <button
-                        onClick={() => {
-                          spotifyApi.play();
-                          setPlatStatus("play");
-                        }}
-                      >
-                        <IoPlayCircle size={36} />
+                      {playStatus == "play" ? (
+                        <button
+                          onClick={() => {
+                            spotifyApi.pause();
+                            setPlatStatus("pause");
+                          }}
+                        >
+                          <IoPauseCircle size={36} />
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() => {
+                            spotifyApi.play();
+                            setPlatStatus("play");
+                          }}
+                        >
+                          <IoPlayCircle size={36} />
+                        </button>
+                      )}
+                      <button onClick={() => spotifyApi.skipToNext()}>
+                        <IoPlaySkipForward />
                       </button>
-                    )}
-                    <button onClick={() => spotifyApi.skipToNext()}>
-                      <IoPlaySkipForward />
-                    </button>
+                    </div>
                   </div>
                 </div>
-              </div>
+              ) : (
+                <>
+                  <p className="text-2xl">You are not playing anything!</p>
+                  <p>Play something on Spotify and it will show up here.</p>
+                </>
+              )}
             </>
-          ) : (
-            <p>You are not playing anything!</p>
-          )}
+          ) : null}
         </>
       )}
     </>
