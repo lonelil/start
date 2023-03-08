@@ -40,7 +40,7 @@ jobs:
       - name: Create Extension
         run: |
           cp manifest.json dist/manifest.json
-          zip chrome_extension.crx ./dist
+          zip ${{ runner.temp }}/chrome_extension.crx ./dist
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
