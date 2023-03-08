@@ -73,7 +73,7 @@ export default function App() {
       {!wallpaperLoading && (
         <img
           src={wallpaper.image}
-          alt={`${wallpaper.credit}, ${wallpaper.url}.`}
+          alt={wallpaper.alt_description}
           className="h-screen w-screen object-cover"
         ></img>
       )}
