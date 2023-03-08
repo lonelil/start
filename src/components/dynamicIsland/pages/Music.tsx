@@ -33,11 +33,14 @@ export default function MusicPage() {
 
       setLoggedIn(true);
       setCurrentTrackLoaded(true);
-      setInterval(() => {
+      var timer = setInterval(() => {
         spotifyApi.getMyCurrentPlayingTrack().then((data) => {
           setCurrentTrack(data);
         });
       }, 5000);
+      return function cleanup() {
+        clearInterval(timer);
+      };
     }
   }, []);
   return (
