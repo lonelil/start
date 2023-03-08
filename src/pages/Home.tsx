@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { FiHome, FiImage, FiMusic } from "react-icons/fi";
-import SettingsButton from "./components/dynamicIsland/SettingsButtons";
-import HomePage from "./components/dynamicIsland/pages/Home";
-import WallpaperPage from "./components/dynamicIsland/pages/Wallpaper";
+import SettingsButton from "../components/dynamicIsland/SettingsButtons";
+import HomePage from "../components/dynamicIsland/pages/Home";
+import WallpaperPage from "../components/dynamicIsland/pages/Wallpaper";
 
-export default function App() {
+export default function Home() {
   const [wallpaperLoading, setWallpaperLoading] = useState(true);
   const [wallpaper, setWallpaper] = useState({
     image: "",
@@ -43,7 +43,7 @@ export default function App() {
 
   return (
     <>
-      <div className="absolute z-[1] h-screen w-screen overflow-y-hidden text-white">
+      <div className="absolute z-[1] h-screen w-screen overflow-y-hidden">
         <div className="fixed bottom-0 flex w-screen justify-center pb-4 text-center">
           <div
             className={`absolute bottom-40 flex flex-row gap-2 rounded-xl p-2 drop-shadow-lg backdrop-blur-lg`}
@@ -61,10 +61,13 @@ export default function App() {
               onClick={() => setDyanmicIslandPage("wallpaper")}
             />
           </div>
-          <div className="min-w-[300px] rounded-xl p-6 drop-shadow-lg backdrop-blur-lg max-h-[135px]">
+          <div className="max-h-[135px] min-w-[300px] rounded-xl p-6 drop-shadow-lg backdrop-blur-lg">
             {dynamicIslandPage === "home" ? <HomePage /> : null}
             {dynamicIslandPage === "wallpaper" ? (
-              <WallpaperPage wallpaper={wallpaper} handleWallpaperChange={handleWallpaperChange} />
+              <WallpaperPage
+                wallpaper={wallpaper}
+                handleWallpaperChange={handleWallpaperChange}
+              />
             ) : null}
           </div>
         </div>
