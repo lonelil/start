@@ -45,4 +45,5 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
+          name: chrome_extension
           path: ${{ runner.temp }}/chrome_extension.crx
