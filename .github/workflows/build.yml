@@ -6,11 +6,6 @@ on:
 
   workflow_dispatch:
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
 concurrency:
   group: "build"
   cancel-in-progress: true
@@ -42,8 +37,8 @@ jobs:
           cp manifest.json dist/manifest.json
           zip -r chrome-extension-${{ github.event.pull_request.head.sha }}.zip dist
 
-      - name: Upload chrome-extension artifact
-        uses: actions/upload-artifact@v2
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
         with:
           name: chrome-extension-${{ github.sha }}
           path: chrome-extension-${{ github.event.pull_request.head.sha }}.zip
