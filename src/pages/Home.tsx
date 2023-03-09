@@ -12,6 +12,7 @@ export default function Home() {
     credit: "",
     url: "",
     alt_description: "",
+    color: "black",
   });
   const [dynamicIslandPage, setDyanmicIslandPage] = useState("home");
 
@@ -33,6 +34,7 @@ export default function Home() {
           credit: `${data.user.name}`,
           url: data.links.html,
           alt_description: data.alt_description,
+          color: data.color,
         });
         setWallpaperLoading(false);
       });
@@ -80,6 +82,9 @@ export default function Home() {
           src={wallpaper.image}
           alt={wallpaper.alt_description}
           className="h-screen w-screen object-cover"
+          style={{
+            backgroundColor: `${wallpaper.color}`,
+          }}
         ></img>
       )}
     </>
