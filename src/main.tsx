@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
 import "./index.css";
-import NotFound from "./pages/404";
+//import NotFound from "./pages/404";
 import SpotifyCallback from "./pages/SpotifyCallback";
 
 const router = createBrowserRouter([
@@ -17,7 +17,7 @@ const router = createBrowserRouter([
   },
   {
     path: "*",
-    element: <NotFound />,
+    element: <Home />,
   },
 ]);
 
