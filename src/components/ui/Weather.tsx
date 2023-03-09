@@ -30,11 +30,11 @@ export default function Weather() {
         <>
           <div className="flex flex-row justify-center space-x-1">
             <img
-              src={`https://openweathermap.org/img/wn/${
+              src={`https://cdn.jsdelivr.net/gh/basmilius/weather-icons@2.0.0/production/fill/openweathermap//${
                 String(weatherData.code).length == 1
                   ? `0${weatherData.code}`
                   : weatherData.code
-              }d@2x.png`}
+              }d.svg`}
               width={35}
             />
             <p className="my-auto text-lg">{weatherData.temperature}</p>
