@@ -34,15 +34,34 @@ export default function MusicPage() {
 
       setLoggedIn(true);
       setCurrentTrackLoaded(true);
+      if (!document.hidden) {
+        intervalRef.current = setInterval(() => {
+          spotifyApi.getMyCurrentPlayingTrack().then((data) => {
+            setCurrentTrack(data);
+          });
+        }, 5000);
+      }
 
-      intervalRef.current = setInterval(() => {
-        spotifyApi.getMyCurrentPlayingTrack().then((data) => {
-          setCurrentTrack(data);
-        });
-      }, 5000);
+      const visibilityChangeHandler = () => {
+        if (document.hidden) {
+          clearInterval(intervalRef.current);
+        } else if (!intervalRef.current) {
+          intervalRef.current = setInterval(() => {
+            spotifyApi.getMyCurrentPlayingTrack().then((data) => {
+              setCurrentTrack(data);
+            });
+          }, 5000);
+        }
+      };
+
+      document.addEventListener("visibilitychange", visibilityChangeHandler);
 
       return () => {
         clearInterval(intervalRef.current);
+        document.removeEventListener(
+          "visibilitychange",
+          visibilityChangeHandler
+        );
       };
     }
   }, []);

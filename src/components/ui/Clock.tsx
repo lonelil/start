@@ -5,12 +5,27 @@ export default function Clock() {
   const intervalRef = useRef<number>();
 
   useEffect(() => {
-    intervalRef.current = setInterval(() => {
-      setDate(new Date());
-    }, 1000);
+    if (!document.hidden) {
+      intervalRef.current = setInterval(() => {
+        setDate(new Date());
+      }, 1000);
+    }
+
+    const visibilityChangeHandler = () => {
+      if (document.hidden) {
+        clearInterval(intervalRef.current);
+      } else if (!intervalRef.current) {
+        intervalRef.current = setInterval(() => {
+          setDate(new Date());
+        }, 1000);
+      }
+    };
+
+    document.addEventListener("visibilitychange", visibilityChangeHandler);
 
     return () => {
       clearInterval(intervalRef.current);
+      document.removeEventListener("visibilitychange", visibilityChangeHandler);
     };
   });
 
