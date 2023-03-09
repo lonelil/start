@@ -11,15 +11,11 @@ export default function SettingsButton({
 }) {
   return (
     <button
-      className="flex rounded-lg p-2 hover:bg-white hover:bg-opacity-25"
+      className="flex space-x-1.5 rounded-lg p-2 hover:bg-white hover:bg-opacity-25"
       onClick={onClick}
     >
       <Icon size={24} />
-      {text && (
-        <>
-          <p className="mt-0.5 ml-1">{`${text}`}</p>
-        </>
-      )}
+      {text && <p>{`${text}`}</p>}
     </button>
   );
 }
