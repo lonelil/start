@@ -4,6 +4,7 @@ import SettingsButton from "../components/dynamicIsland/SettingsButtons";
 import HomePage from "../components/dynamicIsland/pages/Home";
 import WallpaperPage from "../components/dynamicIsland/pages/Wallpaper";
 import MusicPage from "../components/dynamicIsland/pages/Music";
+import Weather from "../components/ui/Weather";
 
 export default function Home() {
   const [wallpaperLoading, setWallpaperLoading] = useState(true);
@@ -47,6 +48,11 @@ export default function Home() {
   return (
     <>
       <div className="absolute z-[1] h-screen w-screen overflow-y-hidden">
+        <div className="fixed right-0 p-4">
+          <div className="rounded-xl bg-zinc-900 bg-opacity-40 p-2 px-8 text-center drop-shadow-xl">
+            <Weather />
+          </div>
+        </div>
         <div className="fixed bottom-0 flex w-screen justify-center pb-4 text-center">
           <div
             className={`absolute bottom-40 flex flex-row gap-2 rounded-xl p-2 drop-shadow-lg backdrop-blur-lg`}
