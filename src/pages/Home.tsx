@@ -50,9 +50,9 @@ export default function Home() {
     <>
       <div className="absolute z-[1] h-screen w-screen overflow-y-hidden">
         <div className="fixed right-0 p-4">
-          <div className="rounded-xl bg-zinc-900 bg-opacity-40 p-2 px-8 text-center drop-shadow-xl">
+          
             <Weather />
-          </div>
+         
         </div>
         <div className="fixed bottom-0 flex w-screen justify-center pb-4 text-center">
           <div

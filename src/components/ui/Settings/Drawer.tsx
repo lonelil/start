@@ -10,6 +10,14 @@ export default function SettingsDrawer() {
       localStorage.setItem("12hour", watch("12hour"));
   }, [watch("12hour")]);
 
+  useEffect(() => {
+    if (watch("weather-lat") && watch("weather-lon"))
+      localStorage.setItem(
+        "weather",
+        JSON.stringify([watch("weather-lat"), watch("weather-lon")])
+      );
+  }, [watch("weather-lat"), watch("weather-lon")]);
+
   return (
     <div className="drawer drawer-end">
       <input id="settings-drawer" type="checkbox" className="drawer-toggle" />
@@ -41,6 +49,30 @@ export default function SettingsDrawer() {
               <option value={"true"}>Enable</option>
               <option value={"false"}>Disable</option>
             </select>
+          </div>
+
+          <div className="px-4 py-2">
+            <p className="text-lg">Weather</p>
+            <span className="block text-sm text-zinc-400">
+              Set the location of the weather to show.
+            </span>
+
+            <div className="form-control w-full max-w-xs">
+              <span className="mt-2 mb-1 text-sm text-zinc-400">Latitude</span>
+              <input
+                type="text"
+                placeholder="Latitude"
+                className="input-bordered input w-full max-w-xs bg-zinc-900"
+                {...register("weather-lat")}
+              />
+              <span className="mt-2 mb-1 text-sm text-zinc-400">Longitude</span>
+              <input
+                type="text"
+                placeholder="Longitude"
+                className="input-bordered input w-full max-w-xs bg-zinc-900"
+                {...register("weather-lon")}
+              />
+            </div>
           </div>
         </ul>
       </div>
