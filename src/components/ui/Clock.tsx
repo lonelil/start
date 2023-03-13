@@ -31,7 +31,7 @@ export default function Clock() {
 
   return (
     <>
-      {localStorage.getItem("12hour")
+      {localStorage.getItem("12hour") === "true"
         ? date.toLocaleTimeString()
         : date.toLocaleString("en-GB").slice(12)}
     </>

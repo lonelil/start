@@ -5,6 +5,7 @@ import HomePage from "../components/dynamicIsland/pages/Home";
 import WallpaperPage from "../components/dynamicIsland/pages/Wallpaper";
 import MusicPage from "../components/dynamicIsland/pages/Music";
 import Weather from "../components/ui/Weather";
+import SettingsDrawer from "../components/ui/Settings/Drawer";
 
 export default function Home() {
   const [wallpaperLoading, setWallpaperLoading] = useState(true);
@@ -81,6 +82,8 @@ export default function Home() {
             ) : null}
           </div>
         </div>
+
+        <SettingsDrawer />
       </div>
 
       {!wallpaperLoading && (
